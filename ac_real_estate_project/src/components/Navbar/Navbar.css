@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&display=swap');
+
+.top-bar{
+    padding: 2%;
+
+}
+
+.title{
+    font-family: "Nerko One", cursive;
+    font-size: 150%;
+    padding: 1%;
+}
+
+.tool-bar {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin: 1%;
+    font-family: "Nerko One", cursive;
+}
+
+.custom-btn-nav {
+    max-width: 20%;
+    color: rgba(96, 175, 221, 0.644);
+    background-color: #000000;
+    border: none;
+    border-radius: 50px;
+    margin: 10px;
+    padding: 10px 25px;
+    font-weight: 500;
+    font-size: 100%;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      inset -7px -7px 10px 0px rgba(0,0,0,.1),7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    text-shadow:  2px 2px 3px rgba(255,255,255,.5),
+                -4px -4px 6px rgba(116, 125, 136, .2);
+    outline: none;
+  
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 2%;
+    
+  }
+  
+.custom-btn-nav:hover {
+    background-color: #b8d1ee;
+      box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    color: rgb(103, 104, 107);
+  }
+  
+  .custom-btn:before {
+      height: 0%;
+      width:2px;
+  
+  }
