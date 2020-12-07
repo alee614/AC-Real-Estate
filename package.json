@@ -15,7 +15,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "init-react": "^1.1.1",
     "mysql": "^2.18.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "react": "^17.0.1"
   }
 }

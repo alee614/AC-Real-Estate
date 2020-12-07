@@ -83,7 +83,16 @@ async function getVillagerThemes(req, res){
 }
 app.get("/themes", getVillagerThemes);
 
-
+// GET request based on personality
+async function getVillagerByPersonality(req, res){
+	const personality = req.params.personality;
+	console.log(personality);
+	await con.query(`SELECT * FROM ${collection} WHERE personality = "${personality}"`, (err, result, fields) => {
+		if (err) throw err;
+		res.json(result);
+	})
+}
+app.get("/personality/:personality", getVillagerByPersonality);
 // GET request based on species
 async function getVillagerBySpecies(req, res){
 	const species = req.params.species;
@@ -139,9 +148,20 @@ async function getVillagerByColor(req, res){
 }
 app.get("/color/:color", getVillagerByColor);
 
+
+async function getVillager(req, res) {
+	const villager_id = req.params.villager_id;
+	console.log(villager_id);
+
+	await con.query(`SELECT * FROM ${collection} WHERE villager_id = "${villager_id}"`, (err, result, fields) => {
+		if (err) throw err;
+		res.json(result);
+	})
+}
+app.get("/villager/:villager_id", getVillager);
+
 //POST request that adds the new user's email if the user does not already exist
 async function addUserEmail(req, res){
-
 	let response = null;
 
 	const email = req.body.email;
@@ -164,11 +184,34 @@ async function addUserEmail(req, res){
 		// not sure what i should respond with if the email is already inside
 		res.json(response);
 	});
-	
 
 }
 app.post("/newuser", jsonParser, addUserEmail);
 
+async function getUserId(req, res){
+	const email = req.params.email;
+	await con.query(`SELECT user_id FROM animal_crossing.users where email = "${email}"`, (err, result, fields) => {
+		if (err) throw err;
+		res.json(result);
+	})
+}
+app.get("/getuserid/:email", getUserId)
+
+async function addVillagertoUser(req, res){
+	let response = null;
+
+	const user_id = req.body.user_id;
+	const villager_id = req.body.villager_id;
+	console.log(villager_id);
+	// takes the villager_id and then add its to the user_villager table
+	const mysql = `INSERT INTO user_villager (user_id, villager_id) VALUES ("${user_id}", "${villager_id}")`;
+	con.query(mysql, (err, result) => {
+		if (err) throw err;
+		response = result.affectedRows;
+	});
+	res.json(response);
+}
+app.post("/addvillager", jsonParser, addVillagertoUser);
 
 // GET request based on name (if IN)
 
@@ -195,8 +238,8 @@ app.post("/newuser", jsonParser, addUserEmail);
 // app.post("/userlist/:villager", addToUserList);
 
 
-app.listen(3000, function(){
-	console.log("listening on 3000")
+app.listen(80, function(){
+	console.log("listening on 80")
 });
 
 
